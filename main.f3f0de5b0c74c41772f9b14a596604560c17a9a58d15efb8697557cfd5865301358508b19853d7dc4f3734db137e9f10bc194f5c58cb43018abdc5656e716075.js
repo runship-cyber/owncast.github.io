@@ -218,7 +218,7 @@ async function getDirectory() {
     return;
   }
 
-  const response = await fetch('https://yp.owncast.online/active', {
+  const response = await fetch('https://directory.owncast.online/api/active', {
     mode: "cors", // same-origin, no-cors
   });
   const streams = await response.json();
@@ -244,7 +244,7 @@ async function getDirectory() {
     listItem.className="stream-item";
     
     const itemMarkup = '<a href="'+ stream.url +'" target="_blank" rel="noopener noreferrer">' + 
-      '<img src="https://yp.owncast.online/image/thumb/' + stream.id +'" loading="lazy" aspect-ratio="16 / 9" alt="See '+ stream.name +'&apos; stream." />' +
+      '<img src="https://directory.owncast.online/api/image/thumb/' + stream.id +'" loading="lazy" aspect-ratio="16 / 9" alt="See '+ stream.name +'&apos; stream." />' +
       '<span class="stream-name">'+ stream.name +'</span>' +
     '</a>';
 
