@@ -1,6 +1,6 @@
 ---
 title: "Oracle Cloud Object Storage"
-description: "Oracle Cloud Object Storage is AWS S3 compatibile, but requires a little bit different configuration. And 10GB are Always Free!"
+description: "Oracle Cloud Object Storage is AWS S3 compatible, but requires a little bit different configuration. And 10GB are Always Free!"
 draft: false
 images: []
 weight: 070
@@ -8,7 +8,7 @@ toc: false
 type: subpages
 ---
 
-AWS S3 compatibile Oracle Cloud Object Storage (https://www.oracle.com/cloud/storage/object-storage/) is a great choice when you don't want to invest cash, because it contains 10GB of storage in Always Free Tier (https://www.oracle.com/cloud/free/#always-free).
+AWS S3 compatible Oracle Cloud Object Storage (https://www.oracle.com/cloud/storage/object-storage/) is a great choice when you don't want to invest cash, because it contains 10GB of storage in Always Free Tier (https://www.oracle.com/cloud/free/#always-free).
 
 ## Create a Bucket
 
@@ -23,7 +23,6 @@ AWS S3 compatibile Oracle Cloud Object Storage (https://www.oracle.com/cloud/sto
 9. Copy & save "Namespace" (see: picture below)
 
 {{< img src="/docs/img/oracle-namespace.png" align="center">}}
-
 
 ## Create an expiration policy
 
@@ -52,9 +51,9 @@ If failed, do this:
 3. Click "Edit Policy Statements"
 4. 3 x click "+ Another Statement" (bottom right)
 5. Add (default `<GROUP_NAME>` is "Administrators"):
-    - `Allow group <GROUP_NAME> to manage buckets in tenancy`
-    - `Allow group <GROUP_NAME> to manage objects in tenancy`
-    - `Allow service objectstorage-<REGION> to manage object-family in tenancy`
+   - `Allow group <GROUP_NAME> to manage buckets in tenancy`
+   - `Allow group <GROUP_NAME> to manage objects in tenancy`
+   - `Allow service objectstorage-<REGION> to manage object-family in tenancy`
 6. Click "Save Changes"
 
 ## Collect auth data
@@ -80,7 +79,6 @@ Navigate to the "Storage" tab.
 - Region: `<REGION>` (i.e "eu-frankfurt-1")
 
 Optional Settings (but in this case required):
+
 - Serving Endpoint: `https://objectstorage.<REGION>.oraclecloud.com/n/<NAMESPACE>/b/<BUCKET_NAME>/o` (!!! MUST NOT end with slash !!!)
 - Force path-style: ON
-
-

@@ -177,6 +177,32 @@
 										"id": 25
 									}
 								]
+							},
+							{
+								"name": "_decision",
+								"test": "string",
+								"if": "zeuscloud",
+								"is_open": true,
+								"id": 126,
+								"children": [
+									{
+										"name": "https://www.zeuscloud.co.uk/apps/owncast",
+										"id": 127
+									}
+								]
+							},
+							{
+								"name": "_decision",
+								"test": "string",
+								"if": "elestio",
+								"is_open": true,
+								"id": 128,
+								"children": [
+									{
+										"name": "https://elest.io/open-source/owncast",
+										"id": 129
+									}
+								]
 							}
 						]
 					}
@@ -203,6 +229,19 @@
 								"children": [
 									{
 										"name": "https://dash.yunohost.org/appci/app/owncast",
+										"id": 29
+									}
+								]
+							},
+							{
+								"name": "_decision",
+								"test": "string",
+								"if": "cloudron",
+								"is_open": false,
+								"id": 28,
+								"children": [
+									{
+										"name": "https://docs.cloudron.io/apps/owncast/",
 										"id": 29
 									}
 								]

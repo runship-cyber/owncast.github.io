@@ -7,7 +7,7 @@ set -o pipefail
 
 # Install configuration
 if ! [ "${OWNCAST_VERSION:-}" ]; then
-  OWNCAST_VERSION="0.0.11"
+  OWNCAST_VERSION="0.0.13"
 fi
 
 if ! [ "${OWNCAST_INSTALL_DIRECTORY:-}" ]; then
@@ -29,16 +29,7 @@ trap shutdown INT TERM ABRT EXIT
 
 # Formatting escape codes.
 
-if [[ -v NO_COLOR ]]
-then
-  RED=''
-  PURPLE=''
-  BLUE=''
-  GREEN=''
-  BOLD=''
-  UNDERLINE=''
-  NC=''
-else
+if [ -z ${NO_COLOR+x} ]; then
   RED='\033[0;31m'
   PURPLE='\033[0;35m'
   BLUE='\033[1;34m'
@@ -46,6 +37,14 @@ else
   BOLD='\033[1m'
   UNDERLINE='\033[4m'
   NC='\033[0m' # No Color
+else
+  RED=''
+  PURPLE=''
+  BLUE=''
+  GREEN=''
+  BOLD=''
+  UNDERLINE=''
+  NC=''
 fi
 
 # Activity spinner for background processes.
@@ -71,8 +70,8 @@ errorAndExit() {
 
 # Check for a required tool, or exit
 requireTool() {
-  which "$1" >> /dev/null && EC=$? || EC=$?
-  if [ $EC != 0 ]; then
+  if ! command -v $1 &> /dev/null
+  then
     errorAndExit "Could not locate \"$1\", which is required for installation. Please it install it on your system."
   fi
 }
@@ -119,7 +118,6 @@ main () {
   requireTool "curl"
   requireTool "unzip"
   requireTool "tar"
-  requireTool "which"
 
   # Determine operating system & architecture
   case $(uname -s) in
@@ -196,8 +194,8 @@ main () {
   rm "$OWNCAST_TARGET_FILE"
 
   # Check for ffmpeg
-  which ffmpeg >> /dev/null && EC=$? || EC=$?
-  if [ $EC -ne 0 ]; then
+  if ! command -v ffmpeg &> /dev/null
+  then
     # Download ffmpeg
     printf "${BLUE}Downloading${NC} ffmpeg v${FFMPEG_VERSION} "
     curl -s -L ${FFMPEG_DOWNLOAD_URL} --output "${FFMPEG_TARGET_FILE}" &
